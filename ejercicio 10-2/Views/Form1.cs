@@ -4,29 +4,43 @@ namespace ejercicio_10_2
 {
     public partial class FormProfesores : Form
     {
+        // MIEMBROS ----------------------------------------------------------------------------
+        // Instancia del objeto de control de BD
+        SqlDBHelper _sqlDBHelper;
+
+        private int _posicion;
+        
+        // CONSTRUCTOR --------------------------------------------------------------------------
         public FormProfesores()
         {
             InitializeComponent();
         }
 
-        // MIEMBROS -------------------------------------
-        // Instancia del objeto de control de BD
-        SqlDBHelper sqlDBHelper;
-
-        private int posicion;
-
         // LOAD -------------------------------------------------------
         private void FormProfesores_Load(object sender, EventArgs e)
         {
-            sqlDBHelper = new SqlDBHelper();
+            _sqlDBHelper = new SqlDBHelper();
 
-            posicion = 0;
-            MostrarRegistro(posicion);
-            ControlBotonesNavegacion(posicion);
+            // Controlar si la BD no contiene ningún registro. En caso de que no esté vacia, inicializar en posicion 0
+            if (_sqlDBHelper.NumeroProfesores > 0)
+            {
+                _posicion = 0;
+                MostrarRegistro(_posicion);
+                ControlBotonesNavegacion(_posicion);
 
-            // Otros botones
-            btnGuardarRegistro.Enabled = false;
-            btnActualizarRegistro.Enabled = false;
+                // Otros botones
+                btnGuardarRegistro.Enabled = false;
+                btnActualizarRegistro.Enabled = false;
+                btnCancelarAgregar.Visible = false;
+            }
+            else // Si la BD está vacía, iniciar pidiendo añadir un nuevo registro
+            {
+                _posicion = -1;
+                lblPosicion.Text = "Añadir Profesor";
+                ControlBotonesNavegacion(_posicion);
+                btnGuardarRegistro.Enabled = false;
+                btnActualizarRegistro.Enabled = false;
+            }
         }
 
         // MÉTODOS ----------------------------------------------------
@@ -36,7 +50,7 @@ namespace ejercicio_10_2
         {
             Profesor profesor;
 
-            profesor = sqlDBHelper.DevolverProfesor(posicion);
+            profesor = _sqlDBHelper.DevolverProfesor(posicion);
 
             txtDni.Text = profesor.Dni;
             txtNombre.Text = profesor.Nombre;
@@ -44,7 +58,7 @@ namespace ejercicio_10_2
             txtTelefono.Text = profesor.Tlf;
             txtEmail.Text = profesor.Email;
 
-            lblPosicion.Text = $"Profesor {posicion + 1} de {sqlDBHelper.NumeroProfesores}";
+            lblPosicion.Text = $"Profesor {posicion + 1} de {_sqlDBHelper.NumeroProfesores}";
         }
 
         // Método para controlar la activación de los botones de navegación
@@ -57,11 +71,18 @@ namespace ejercicio_10_2
                 btnAnterior.Enabled = false;
                 btnUltimo.Enabled = true;
             }
-            else if (posicion == sqlDBHelper.NumeroProfesores - 1)
+            else if (posicion == _sqlDBHelper.NumeroProfesores - 1)
             {
                 btnPrimero.Enabled = true;
                 btnSiguiente.Enabled = false;
                 btnAnterior.Enabled = true;
+                btnUltimo.Enabled = false;
+            }
+            else if (posicion == -1) // Valor reservado para "Modo Añadir"
+            {
+                btnPrimero.Enabled = false;
+                btnSiguiente.Enabled = false;
+                btnAnterior.Enabled = false;
                 btnUltimo.Enabled = false;
             }
             else
@@ -73,33 +94,64 @@ namespace ejercicio_10_2
             }
         }
 
+        // Funcion clear de los textBox
+        private void LimpiarTextBox()
+        {
+            txtDni.Clear();
+            txtNombre.Clear();
+            txtApellidos.Clear();
+            txtTelefono.Clear();
+            txtEmail.Clear();
+        }
+
         // BOTONES ------------------------------------------------------------
         private void btnPrimero_Click(object sender, EventArgs e)
         {
-            posicion = 0;
-            MostrarRegistro(posicion);
-            ControlBotonesNavegacion(posicion);
+            _posicion = 0;
+            MostrarRegistro(_posicion);
+            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            posicion++;
-            MostrarRegistro(posicion);
-            ControlBotonesNavegacion(posicion);
+            _posicion++;
+            MostrarRegistro(_posicion);
+            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            posicion--;
-            MostrarRegistro(posicion);
-            ControlBotonesNavegacion(posicion);
+            _posicion--;
+            MostrarRegistro(_posicion);
+            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
-            posicion = sqlDBHelper.NumeroProfesores - 1;
-            MostrarRegistro(posicion);
-            ControlBotonesNavegacion(posicion);
+            _posicion = _sqlDBHelper.NumeroProfesores - 1;
+            MostrarRegistro(_posicion);
+            ControlBotonesNavegacion(_posicion);
+        }
+
+        private void btnAnyadirRegistro_Click(object sender, EventArgs e)
+        {
+            // Vaciamos los textBox para añadir los nuevos datos
+            LimpiarTextBox();
+
+            // Establecemos posición -1 "Modo Agregar"
+            _posicion = -1;
+            ControlBotonesNavegacion(_posicion);
+            btnActualizarRegistro.Enabled = false;
+            btnEliminarRegistro.Enabled = false;
+            btnGuardarRegistro.Enabled = false;
+
+            // Activamos el botón de cancelar
+            btnCancelarAgregar.Visible = true;
+        }
+
+        private void btnGuardarRegistro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

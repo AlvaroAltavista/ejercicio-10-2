@@ -51,6 +51,7 @@
             btnActualizarRegistro = new Button();
             btnGuardarRegistro = new Button();
             btnAnyadirRegistro = new Button();
+            btnCancelarAgregar = new Button();
             grpDatos.SuspendLayout();
             grpNavegacion.SuspendLayout();
             grpNuevoRegistro.SuspendLayout();
@@ -227,6 +228,7 @@
             // 
             // grpNuevoRegistro
             // 
+            grpNuevoRegistro.Controls.Add(btnCancelarAgregar);
             grpNuevoRegistro.Controls.Add(grpGestionarRegistros);
             grpNuevoRegistro.Controls.Add(btnGuardarRegistro);
             grpNuevoRegistro.Controls.Add(btnAnyadirRegistro);
@@ -274,6 +276,7 @@
             btnGuardarRegistro.TabIndex = 0;
             btnGuardarRegistro.Text = "Guardar";
             btnGuardarRegistro.UseVisualStyleBackColor = true;
+            btnGuardarRegistro.Click += btnGuardarRegistro_Click;
             // 
             // btnAnyadirRegistro
             // 
@@ -283,6 +286,16 @@
             btnAnyadirRegistro.TabIndex = 0;
             btnAnyadirRegistro.Text = "Añadir";
             btnAnyadirRegistro.UseVisualStyleBackColor = true;
+            btnAnyadirRegistro.Click += btnAnyadirRegistro_Click;
+            // 
+            // btnCancelarAgregar
+            // 
+            btnCancelarAgregar.Location = new Point(23, 58);
+            btnCancelarAgregar.Name = "btnCancelarAgregar";
+            btnCancelarAgregar.Size = new Size(210, 52);
+            btnCancelarAgregar.TabIndex = 4;
+            btnCancelarAgregar.Text = "Cancelar";
+            btnCancelarAgregar.UseVisualStyleBackColor = true;
             // 
             // FormProfesores
             // 
@@ -332,5 +345,6 @@
         private GroupBox grpGestionarRegistros;
         private Button btnEliminarRegistro;
         private Button btnActualizarRegistro;
+        private Button btnCancelarAgregar;
     }
 }

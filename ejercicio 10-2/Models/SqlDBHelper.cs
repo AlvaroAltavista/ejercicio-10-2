@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,22 @@ namespace ejercicio_10_2.Models
         private void ActualizarNumeroProfesores()
         {
             _numeroProfesores = _dataSetProfesores.Tables["Profesores"].Rows.Count;
+        }
+
+        // Método que devuelve si ya existe un DNI en la BD
+        public bool ComprobarDNI(string dni)
+        {
+            bool existe = false;
+
+            foreach (DataRow registro in _dataSetProfesores.Tables["Profesores"].Rows)
+            {
+                if (dni == registro[0].ToString())
+                {
+                    existe = true;
+                }
+            }
+
+            return existe;
         }
 
         // MÉTODOS CRUD ---------
