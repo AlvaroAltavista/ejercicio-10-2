@@ -9,7 +9,7 @@ namespace ejercicio_10_2
         SqlDBHelper _sqlDBHelper;
 
         private int _posicion;
-        
+
         // CONSTRUCTOR --------------------------------------------------------------------------
         public FormProfesores()
         {
@@ -21,12 +21,19 @@ namespace ejercicio_10_2
         {
             _sqlDBHelper = new SqlDBHelper();
 
+            ControlInterfaz();
+        }
+
+        // MÉTODOS ----------------------------------------------------
+
+        // Método que controla la vista de la interfaz en función del número de registros de la BD
+        private void ControlInterfaz()
+        {
             // Controlar si la BD no contiene ningún registro. En caso de que no esté vacia, inicializar en posicion 0
             if (_sqlDBHelper.NumeroProfesores > 0)
             {
                 _posicion = 0;
                 MostrarRegistro(_posicion);
-                ControlBotonesNavegacion(_posicion);
 
                 // Otros botones
                 btnGuardarRegistro.Enabled = false;
@@ -40,10 +47,9 @@ namespace ejercicio_10_2
                 ControlBotonesNavegacion(_posicion);
                 btnGuardarRegistro.Enabled = false;
                 btnActualizarRegistro.Enabled = false;
+                btnEliminarRegistro.Enabled = false;
             }
         }
-
-        // MÉTODOS ----------------------------------------------------
 
         // Método que muestra el registro en los textBox
         private void MostrarRegistro(int posicion)
@@ -58,6 +64,10 @@ namespace ejercicio_10_2
             txtTelefono.Text = profesor.Tlf;
             txtEmail.Text = profesor.Email;
 
+            // Actualizamos los controles de navegación
+            ControlBotonesNavegacion(posicion);
+
+            // Actualización del label de posición
             lblPosicion.Text = $"Profesor {posicion + 1} de {_sqlDBHelper.NumeroProfesores}";
         }
 
@@ -109,30 +119,27 @@ namespace ejercicio_10_2
         {
             _posicion = 0;
             MostrarRegistro(_posicion);
-            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             _posicion++;
             MostrarRegistro(_posicion);
-            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
             _posicion--;
             MostrarRegistro(_posicion);
-            ControlBotonesNavegacion(_posicion);
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
             _posicion = _sqlDBHelper.NumeroProfesores - 1;
             MostrarRegistro(_posicion);
-            ControlBotonesNavegacion(_posicion);
         }
 
+        // Botones Nuevo Registro -----------------------
         private void btnAnyadirRegistro_Click(object sender, EventArgs e)
         {
             // Vaciamos los textBox para añadir los nuevos datos
@@ -145,13 +152,54 @@ namespace ejercicio_10_2
             btnEliminarRegistro.Enabled = false;
             btnGuardarRegistro.Enabled = false;
 
+            lblPosicion.Text = "Añadir Profesor:";
+
             // Activamos el botón de cancelar
             btnCancelarAgregar.Visible = true;
         }
 
         private void btnGuardarRegistro_Click(object sender, EventArgs e)
         {
+            Profesor profesor = new Profesor(txtDni.Text, txtNombre.Text, txtApellidos.Text, txtTelefono.Text, txtEmail.Text);
 
+            _sqlDBHelper.AnyadirProfesorBD(profesor);
+
+            // Mostramos el profesor agregado como el último
+            _posicion = _sqlDBHelper.NumeroProfesores - 1;
+            MostrarRegistro(_posicion);
         }
+        private void btnCancelarAgregar_Click(object sender, EventArgs e)
+        {
+            DialogResult cancelar;
+
+            cancelar = MessageBox.Show("¿Desea cancelar la introducción del nuevo profesor?", "Cancelar", MessageBoxButtons.YesNo);
+
+            if (cancelar == DialogResult.Yes)
+            {
+                _posicion = 0;
+                MostrarRegistro(_posicion);
+                btnCancelarAgregar.Visible = false;
+            }
+            
+        }
+
+        // Botones Gestion de Registros ----------------
+        private void btnEliminarRegistro_Click(object sender, EventArgs e)
+        {
+            DialogResult eliminar;
+
+            eliminar = MessageBox.Show("¿Desea eliminar el profesor que se muestra?", "Eliminar", MessageBoxButtons.YesNo);
+
+            if (eliminar == DialogResult.Yes)
+            {
+                _sqlDBHelper.EliminarProfesor(_posicion);
+
+                // Realizamos el control de vista
+                ControlInterfaz();
+            }
+        }
+
+        // VALIDACIONES ------------------------
+
     }
 }

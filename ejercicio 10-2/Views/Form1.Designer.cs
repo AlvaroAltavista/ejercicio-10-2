@@ -46,12 +46,12 @@
             btnSiguiente = new Button();
             btnPrimero = new Button();
             grpNuevoRegistro = new GroupBox();
+            btnCancelarAgregar = new Button();
             grpGestionarRegistros = new GroupBox();
             btnEliminarRegistro = new Button();
             btnActualizarRegistro = new Button();
             btnGuardarRegistro = new Button();
             btnAnyadirRegistro = new Button();
-            btnCancelarAgregar = new Button();
             grpDatos.SuspendLayout();
             grpNavegacion.SuspendLayout();
             grpNuevoRegistro.SuspendLayout();
@@ -239,6 +239,16 @@
             grpNuevoRegistro.TabStop = false;
             grpNuevoRegistro.Text = "Nuevo Registro";
             // 
+            // btnCancelarAgregar
+            // 
+            btnCancelarAgregar.Location = new Point(23, 58);
+            btnCancelarAgregar.Name = "btnCancelarAgregar";
+            btnCancelarAgregar.Size = new Size(210, 52);
+            btnCancelarAgregar.TabIndex = 4;
+            btnCancelarAgregar.Text = "Cancelar";
+            btnCancelarAgregar.UseVisualStyleBackColor = true;
+            btnCancelarAgregar.Click += btnCancelarAgregar_Click;
+            // 
             // grpGestionarRegistros
             // 
             grpGestionarRegistros.Controls.Add(btnEliminarRegistro);
@@ -258,6 +268,7 @@
             btnEliminarRegistro.TabIndex = 0;
             btnEliminarRegistro.Text = "Eliminar";
             btnEliminarRegistro.UseVisualStyleBackColor = true;
+            btnEliminarRegistro.Click += btnEliminarRegistro_Click;
             // 
             // btnActualizarRegistro
             // 
@@ -287,15 +298,6 @@
             btnAnyadirRegistro.Text = "Añadir";
             btnAnyadirRegistro.UseVisualStyleBackColor = true;
             btnAnyadirRegistro.Click += btnAnyadirRegistro_Click;
-            // 
-            // btnCancelarAgregar
-            // 
-            btnCancelarAgregar.Location = new Point(23, 58);
-            btnCancelarAgregar.Name = "btnCancelarAgregar";
-            btnCancelarAgregar.Size = new Size(210, 52);
-            btnCancelarAgregar.TabIndex = 4;
-            btnCancelarAgregar.Text = "Cancelar";
-            btnCancelarAgregar.UseVisualStyleBackColor = true;
             // 
             // FormProfesores
             // 
