@@ -72,29 +72,31 @@
             grpDatos.Controls.Add(lblDni);
             grpDatos.Location = new Point(45, 103);
             grpDatos.Name = "grpDatos";
-            grpDatos.Size = new Size(953, 269);
+            grpDatos.Size = new Size(953, 337);
             grpDatos.TabIndex = 0;
             grpDatos.TabStop = false;
             grpDatos.Text = "Datos";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(585, 188);
+            txtEmail.Location = new Point(586, 254);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(296, 34);
             txtEmail.TabIndex = 5;
+            txtEmail.TextChanged += txtDni_TextChanged;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(138, 188);
+            txtTelefono.Location = new Point(121, 254);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(296, 34);
-            txtTelefono.TabIndex = 3;
+            txtTelefono.TabIndex = 4;
+            txtTelefono.TextChanged += txtDni_TextChanged;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(515, 191);
+            lblEmail.Location = new Point(515, 256);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(66, 31);
             lblEmail.TabIndex = 0;
@@ -104,7 +106,7 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(39, 191);
+            lblTelefono.Location = new Point(22, 257);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(96, 31);
             lblTelefono.TabIndex = 0;
@@ -113,15 +115,16 @@
             // 
             // txtApellidos
             // 
-            txtApellidos.Location = new Point(585, 124);
+            txtApellidos.Location = new Point(585, 154);
             txtApellidos.Name = "txtApellidos";
             txtApellidos.Size = new Size(296, 34);
-            txtApellidos.TabIndex = 4;
+            txtApellidos.TabIndex = 3;
+            txtApellidos.TextChanged += txtDni_TextChanged;
             // 
             // lblApellidos
             // 
             lblApellidos.AutoSize = true;
-            lblApellidos.Location = new Point(483, 127);
+            lblApellidos.Location = new Point(483, 157);
             lblApellidos.Name = "lblApellidos";
             lblApellidos.Size = new Size(98, 31);
             lblApellidos.TabIndex = 0;
@@ -130,15 +133,16 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(138, 124);
+            txtNombre.Location = new Point(121, 155);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(296, 34);
             txtNombre.TabIndex = 2;
+            txtNombre.TextChanged += txtDni_TextChanged;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(43, 127);
+            lblNombre.Location = new Point(26, 158);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(92, 31);
             lblNombre.TabIndex = 0;
@@ -147,15 +151,16 @@
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(138, 63);
+            txtDni.Location = new Point(121, 64);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(296, 34);
             txtDni.TabIndex = 1;
+            txtDni.TextChanged += txtDni_TextChanged;
             // 
             // lblDni
             // 
             lblDni.AutoSize = true;
-            lblDni.Location = new Point(87, 66);
+            lblDni.Location = new Point(70, 67);
             lblDni.Name = "lblDni";
             lblDni.RightToLeft = RightToLeft.No;
             lblDni.Size = new Size(48, 31);
@@ -179,7 +184,7 @@
             grpNavegacion.Controls.Add(btnAnterior);
             grpNavegacion.Controls.Add(btnSiguiente);
             grpNavegacion.Controls.Add(btnPrimero);
-            grpNavegacion.Location = new Point(45, 421);
+            grpNavegacion.Location = new Point(45, 476);
             grpNavegacion.Name = "grpNavegacion";
             grpNavegacion.Size = new Size(953, 142);
             grpNavegacion.TabIndex = 2;
@@ -232,7 +237,7 @@
             grpNuevoRegistro.Controls.Add(grpGestionarRegistros);
             grpNuevoRegistro.Controls.Add(btnGuardarRegistro);
             grpNuevoRegistro.Controls.Add(btnAnyadirRegistro);
-            grpNuevoRegistro.Location = new Point(45, 600);
+            grpNuevoRegistro.Location = new Point(45, 655);
             grpNuevoRegistro.Name = "grpNuevoRegistro";
             grpNuevoRegistro.Size = new Size(953, 142);
             grpNuevoRegistro.TabIndex = 3;
@@ -303,7 +308,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 805);
+            ClientSize = new Size(1050, 842);
             Controls.Add(grpNuevoRegistro);
             Controls.Add(grpNavegacion);
             Controls.Add(lblPosicion);

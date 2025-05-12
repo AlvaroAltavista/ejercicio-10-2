@@ -1,4 +1,5 @@
 using ejercicio_10_2.Models;
+using System.Text.RegularExpressions;
 
 namespace ejercicio_10_2
 {
@@ -69,6 +70,7 @@ namespace ejercicio_10_2
 
             // Actualización del label de posición
             lblPosicion.Text = $"Profesor {posicion + 1} de {_sqlDBHelper.NumeroProfesores}";
+
         }
 
         // Método para controlar la activación de los botones de navegación
@@ -178,9 +180,10 @@ namespace ejercicio_10_2
             {
                 _posicion = 0;
                 MostrarRegistro(_posicion);
+                btnGuardarRegistro.Enabled = false;
                 btnCancelarAgregar.Visible = false;
             }
-            
+
         }
 
         // Botones Gestion de Registros ----------------
@@ -200,6 +203,74 @@ namespace ejercicio_10_2
         }
 
         // VALIDACIONES ------------------------
+        // Validación de DNI
+        private bool ValidarDni(string dni)
+        {
+            bool valido = false;
+            string patron = @"^\d{8}[A-Z]$";
 
+            if (Regex.IsMatch(dni, patron)) // Se coloca en anidación para evitar que se ejecute la comprobación sin un dni válido.
+            {
+                if (!_sqlDBHelper.ComprobarDNI(dni))
+                {
+                    valido = true;
+                }
+            }
+
+            return valido;
+        }
+
+        // Validación del teléfono
+        private bool ValidarTelefono(string telefono)
+        {
+            string patron = @"^\d{9}$";
+            return Regex.IsMatch(telefono, patron);
+        }
+
+        // Validación del email
+        private bool ValidarEmail(string email)
+        {
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            bool valido = Regex.IsMatch(email, patron);
+
+            return valido;
+        }
+
+        // Validación de profesor
+        private bool ValidarProfesor()
+        {
+            bool valido = false;
+
+            if (ValidarDni(txtDni.Text) && ValidarTelefono(txtTelefono.Text) && ValidarEmail(txtEmail.Text)) // Comprobación de formatos
+            {
+                if (txtNombre.Text != "" && txtApellidos.Text != "")
+                {
+                    valido = true;
+                }
+            }
+
+            return valido;
+        }
+
+        // Validaciones en tiempo real de TextBox
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+            if (ValidarProfesor())
+            {
+                if (btnCancelarAgregar.Visible == true)
+                {
+                    btnGuardarRegistro.Enabled = true;
+                }
+                else
+                {
+                    btnActualizarRegistro.Enabled = true;
+                }
+            }
+            else
+            {
+                btnGuardarRegistro.Enabled = false;
+                btnActualizarRegistro.Enabled = false;
+            }
+        }
     }
 }
