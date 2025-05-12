@@ -116,29 +116,84 @@ namespace ejercicio_10_2
             txtEmail.Clear();
         }
 
-        // BOTONES ------------------------------------------------------------
+        // BOTONES -------------------------------------------------------------------------------------------------------------------------
         private void btnPrimero_Click(object sender, EventArgs e)
         {
-            _posicion = 0;
-            MostrarRegistro(_posicion);
+            if (ControlarCambiosInterfaz(_posicion))
+            {
+                DialogResult descartar = MessageBox.Show("Se perderán los cambios sin actualizar.\n\n¿Desea continuar?", "Actualizar", MessageBoxButtons.YesNo);
+
+                if (descartar == DialogResult.Yes)
+                {
+                    _posicion = 0;
+                    MostrarRegistro(_posicion);
+                }
+
+            }
+            else
+            {
+                _posicion = 0;
+                MostrarRegistro(_posicion);
+            }
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            _posicion++;
-            MostrarRegistro(_posicion);
+            if (ControlarCambiosInterfaz(_posicion))
+            {
+                DialogResult descartar = MessageBox.Show("Se perderán los cambios sin actualizar.\n\n¿Desea continuar?", "Actualizar", MessageBoxButtons.YesNo);
+
+                if (descartar == DialogResult.Yes)
+                {
+                    _posicion++;
+                    MostrarRegistro(_posicion);
+                }
+
+            }
+            else
+            {
+                _posicion++;
+                MostrarRegistro(_posicion);
+            }
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            _posicion--;
-            MostrarRegistro(_posicion);
+            if (ControlarCambiosInterfaz(_posicion))
+            {
+                DialogResult descartar = MessageBox.Show("Se perderán los cambios sin actualizar.\n\n¿Desea continuar?", "Actualizar", MessageBoxButtons.YesNo);
+
+                if (descartar == DialogResult.Yes)
+                {
+                    _posicion--;
+                    MostrarRegistro(_posicion);
+                }
+                
+            }
+            else
+            {
+                _posicion--;
+                MostrarRegistro(_posicion);
+            }
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
-            _posicion = _sqlDBHelper.NumeroProfesores - 1;
-            MostrarRegistro(_posicion);
+            if (ControlarCambiosInterfaz(_posicion))
+            {
+                DialogResult descartar = MessageBox.Show("Se perderán los cambios sin actualizar.\n\n¿Desea continuar?", "Actualizar", MessageBoxButtons.YesNo);
+
+                if (descartar == DialogResult.Yes)
+                {
+                    _posicion = _sqlDBHelper.NumeroProfesores - 1;
+                    MostrarRegistro(_posicion);
+                }
+            }
+            else
+            {
+                _posicion = _sqlDBHelper.NumeroProfesores - 1;
+                MostrarRegistro(_posicion);
+            }
         }
 
         // Botones Nuevo Registro -----------------------
@@ -169,6 +224,9 @@ namespace ejercicio_10_2
             // Mostramos el profesor agregado como el último
             _posicion = _sqlDBHelper.NumeroProfesores - 1;
             MostrarRegistro(_posicion);
+            btnGuardarRegistro.Enabled = false;
+            btnCancelarAgregar.Visible = false;
+            btnEliminarRegistro.Enabled = true;
         }
         private void btnCancelarAgregar_Click(object sender, EventArgs e)
         {
@@ -271,6 +329,27 @@ namespace ejercicio_10_2
                 btnGuardarRegistro.Enabled = false;
                 btnActualizarRegistro.Enabled = false;
             }
+        }
+
+        // Método de control de cambios en la interfaz
+        private bool ControlarCambiosInterfaz(int posicion)
+        {
+            Profesor profesorMuestra = new Profesor(txtDni.Text, txtNombre.Text, txtApellidos.Text, txtTelefono.Text, txtEmail.Text);
+            Profesor profesorBD = _sqlDBHelper.DevolverProfesor(posicion);
+
+            bool cambios = false;
+
+            // Comparación de profesores
+            if (profesorMuestra.Dni != profesorBD.Dni ||
+                profesorMuestra.Nombre != profesorBD.Nombre ||
+                profesorMuestra.Apellidos != profesorBD.Apellidos ||
+                profesorMuestra.Tlf != profesorBD.Tlf ||
+                profesorMuestra.Email != profesorBD.Email)
+            {
+                cambios = true;
+            }
+
+            return cambios;
         }
     }
 }
