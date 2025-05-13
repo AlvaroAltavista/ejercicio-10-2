@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProfesores));
             grpDatos = new GroupBox();
+            imgEmailOk = new PictureBox();
+            imgEmailNo = new PictureBox();
+            imgTelefonoOk = new PictureBox();
+            imgTelefonoNo = new PictureBox();
+            imgApellidosOk = new PictureBox();
+            imgApellidosNo = new PictureBox();
+            imgNombreOk = new PictureBox();
+            imgDniOk = new PictureBox();
+            imgNombreNo = new PictureBox();
+            imgDniNo = new PictureBox();
             txtEmail = new TextBox();
             txtTelefono = new TextBox();
             lblEmail = new Label();
@@ -52,7 +63,18 @@
             btnActualizarRegistro = new Button();
             btnGuardarRegistro = new Button();
             btnAnyadirRegistro = new Button();
+            lblDniExiste = new Label();
             grpDatos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgEmailOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgEmailNo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgTelefonoOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgTelefonoNo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgApellidosOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgApellidosNo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgNombreOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgDniOk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgNombreNo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgDniNo).BeginInit();
             grpNavegacion.SuspendLayout();
             grpNuevoRegistro.SuspendLayout();
             grpGestionarRegistros.SuspendLayout();
@@ -60,6 +82,17 @@
             // 
             // grpDatos
             // 
+            grpDatos.Controls.Add(lblDniExiste);
+            grpDatos.Controls.Add(imgEmailOk);
+            grpDatos.Controls.Add(imgEmailNo);
+            grpDatos.Controls.Add(imgTelefonoOk);
+            grpDatos.Controls.Add(imgTelefonoNo);
+            grpDatos.Controls.Add(imgApellidosOk);
+            grpDatos.Controls.Add(imgApellidosNo);
+            grpDatos.Controls.Add(imgNombreOk);
+            grpDatos.Controls.Add(imgDniOk);
+            grpDatos.Controls.Add(imgNombreNo);
+            grpDatos.Controls.Add(imgDniNo);
             grpDatos.Controls.Add(txtEmail);
             grpDatos.Controls.Add(txtTelefono);
             grpDatos.Controls.Add(lblEmail);
@@ -76,6 +109,106 @@
             grpDatos.TabIndex = 0;
             grpDatos.TabStop = false;
             grpDatos.Text = "Datos";
+            // 
+            // imgEmailOk
+            // 
+            imgEmailOk.Image = (Image)resources.GetObject("imgEmailOk.Image");
+            imgEmailOk.Location = new Point(902, 255);
+            imgEmailOk.Name = "imgEmailOk";
+            imgEmailOk.Size = new Size(34, 34);
+            imgEmailOk.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgEmailOk.TabIndex = 6;
+            imgEmailOk.TabStop = false;
+            // 
+            // imgEmailNo
+            // 
+            imgEmailNo.Image = (Image)resources.GetObject("imgEmailNo.Image");
+            imgEmailNo.Location = new Point(902, 254);
+            imgEmailNo.Name = "imgEmailNo";
+            imgEmailNo.Size = new Size(34, 34);
+            imgEmailNo.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgEmailNo.TabIndex = 6;
+            imgEmailNo.TabStop = false;
+            // 
+            // imgTelefonoOk
+            // 
+            imgTelefonoOk.Image = (Image)resources.GetObject("imgTelefonoOk.Image");
+            imgTelefonoOk.Location = new Point(430, 255);
+            imgTelefonoOk.Name = "imgTelefonoOk";
+            imgTelefonoOk.Size = new Size(34, 34);
+            imgTelefonoOk.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgTelefonoOk.TabIndex = 6;
+            imgTelefonoOk.TabStop = false;
+            // 
+            // imgTelefonoNo
+            // 
+            imgTelefonoNo.Image = (Image)resources.GetObject("imgTelefonoNo.Image");
+            imgTelefonoNo.Location = new Point(430, 254);
+            imgTelefonoNo.Name = "imgTelefonoNo";
+            imgTelefonoNo.Size = new Size(34, 34);
+            imgTelefonoNo.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgTelefonoNo.TabIndex = 6;
+            imgTelefonoNo.TabStop = false;
+            // 
+            // imgApellidosOk
+            // 
+            imgApellidosOk.Image = (Image)resources.GetObject("imgApellidosOk.Image");
+            imgApellidosOk.Location = new Point(902, 155);
+            imgApellidosOk.Name = "imgApellidosOk";
+            imgApellidosOk.Size = new Size(34, 34);
+            imgApellidosOk.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgApellidosOk.TabIndex = 6;
+            imgApellidosOk.TabStop = false;
+            // 
+            // imgApellidosNo
+            // 
+            imgApellidosNo.Image = (Image)resources.GetObject("imgApellidosNo.Image");
+            imgApellidosNo.Location = new Point(902, 154);
+            imgApellidosNo.Name = "imgApellidosNo";
+            imgApellidosNo.Size = new Size(34, 34);
+            imgApellidosNo.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgApellidosNo.TabIndex = 6;
+            imgApellidosNo.TabStop = false;
+            // 
+            // imgNombreOk
+            // 
+            imgNombreOk.Image = (Image)resources.GetObject("imgNombreOk.Image");
+            imgNombreOk.Location = new Point(430, 155);
+            imgNombreOk.Name = "imgNombreOk";
+            imgNombreOk.Size = new Size(34, 34);
+            imgNombreOk.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgNombreOk.TabIndex = 6;
+            imgNombreOk.TabStop = false;
+            // 
+            // imgDniOk
+            // 
+            imgDniOk.Image = (Image)resources.GetObject("imgDniOk.Image");
+            imgDniOk.Location = new Point(430, 65);
+            imgDniOk.Name = "imgDniOk";
+            imgDniOk.Size = new Size(34, 34);
+            imgDniOk.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgDniOk.TabIndex = 6;
+            imgDniOk.TabStop = false;
+            // 
+            // imgNombreNo
+            // 
+            imgNombreNo.Image = (Image)resources.GetObject("imgNombreNo.Image");
+            imgNombreNo.Location = new Point(430, 154);
+            imgNombreNo.Name = "imgNombreNo";
+            imgNombreNo.Size = new Size(34, 34);
+            imgNombreNo.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgNombreNo.TabIndex = 6;
+            imgNombreNo.TabStop = false;
+            // 
+            // imgDniNo
+            // 
+            imgDniNo.Image = (Image)resources.GetObject("imgDniNo.Image");
+            imgDniNo.Location = new Point(430, 64);
+            imgDniNo.Name = "imgDniNo";
+            imgDniNo.Size = new Size(34, 34);
+            imgDniNo.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgDniNo.TabIndex = 6;
+            imgDniNo.TabStop = false;
             // 
             // txtEmail
             // 
@@ -305,6 +438,16 @@
             btnAnyadirRegistro.UseVisualStyleBackColor = true;
             btnAnyadirRegistro.Click += btnAnyadirRegistro_Click;
             // 
+            // lblDniExiste
+            // 
+            lblDniExiste.AutoSize = true;
+            lblDniExiste.Font = new Font("Poppins ExtraLight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDniExiste.Location = new Point(116, 101);
+            lblDniExiste.Name = "lblDniExiste";
+            lblDniExiste.Size = new Size(141, 31);
+            lblDniExiste.TabIndex = 7;
+            lblDniExiste.Text = "El DNI ya existe";
+            // 
             // FormProfesores
             // 
             AutoScaleDimensions = new SizeF(11F, 31F);
@@ -321,6 +464,16 @@
             Load += FormProfesores_Load;
             grpDatos.ResumeLayout(false);
             grpDatos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgEmailOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgEmailNo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgTelefonoOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgTelefonoNo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgApellidosOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgApellidosNo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgNombreOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgDniOk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgNombreNo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgDniNo).EndInit();
             grpNavegacion.ResumeLayout(false);
             grpNuevoRegistro.ResumeLayout(false);
             grpGestionarRegistros.ResumeLayout(false);
@@ -354,5 +507,16 @@
         private Button btnEliminarRegistro;
         private Button btnActualizarRegistro;
         private Button btnCancelarAgregar;
+        private PictureBox imgEmailOk;
+        private PictureBox imgEmailNo;
+        private PictureBox imgTelefonoOk;
+        private PictureBox imgTelefonoNo;
+        private PictureBox imgApellidosOk;
+        private PictureBox imgApellidosNo;
+        private PictureBox imgNombreOk;
+        private PictureBox imgDniOk;
+        private PictureBox imgNombreNo;
+        private PictureBox imgDniNo;
+        private Label lblDniExiste;
     }
 }
