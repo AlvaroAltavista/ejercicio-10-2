@@ -25,7 +25,7 @@ namespace ejercicio_10_2
             ControlInterfaz();
         }
 
-        // MÉTODOS ----------------------------------------------------
+        // MÉTODOS -------------------------------------------------------------------------------
 
         // Método que controla la vista de la interfaz en función del número de registros de la BD
         private void ControlInterfaz()
@@ -106,7 +106,7 @@ namespace ejercicio_10_2
             }
         }
 
-        // Funcion clear de los textBox
+        // Método clear de los textBox
         private void LimpiarTextBox()
         {
             txtDni.Clear();
@@ -168,7 +168,7 @@ namespace ejercicio_10_2
                     _posicion--;
                     MostrarRegistro(_posicion);
                 }
-                
+
             }
             else
             {
@@ -260,7 +260,16 @@ namespace ejercicio_10_2
             }
         }
 
-        // VALIDACIONES ------------------------
+        private void btnActualizarRegistro_Click(object sender, EventArgs e)
+        {
+            Profesor profesorInterfaz = new Profesor(txtDni.Text, txtNombre.Text, txtApellidos.Text, txtTelefono.Text, txtEmail.Text);
+            _sqlDBHelper.ActualizarDatosProfesor(profesorInterfaz, _posicion);
+
+            // Desactivamos el boton de actualizar
+            btnActualizarRegistro.Enabled = false;
+        }
+
+        // VALIDACIONES ----------------------------------------------------------------------------------------------------------
         // Validación de DNI
         private bool ValidarDni(string dni)
         {
@@ -313,7 +322,7 @@ namespace ejercicio_10_2
         // Validaciones en tiempo real de TextBox
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
-            if (ValidarProfesor())
+            if (ValidarProfesor()) // Si hay cambios, comprobamos si estamos añadiendo o queremos actualizar
             {
                 if (btnCancelarAgregar.Visible == true)
                 {
@@ -334,17 +343,17 @@ namespace ejercicio_10_2
         // Método de control de cambios en la interfaz
         private bool ControlarCambiosInterfaz(int posicion)
         {
-            Profesor profesorMuestra = new Profesor(txtDni.Text, txtNombre.Text, txtApellidos.Text, txtTelefono.Text, txtEmail.Text);
+            Profesor profesorInterfaz = new Profesor(txtDni.Text, txtNombre.Text, txtApellidos.Text, txtTelefono.Text, txtEmail.Text);
             Profesor profesorBD = _sqlDBHelper.DevolverProfesor(posicion);
 
             bool cambios = false;
 
             // Comparación de profesores
-            if (profesorMuestra.Dni != profesorBD.Dni ||
-                profesorMuestra.Nombre != profesorBD.Nombre ||
-                profesorMuestra.Apellidos != profesorBD.Apellidos ||
-                profesorMuestra.Tlf != profesorBD.Tlf ||
-                profesorMuestra.Email != profesorBD.Email)
+            if (profesorInterfaz.Dni != profesorBD.Dni ||
+                profesorInterfaz.Nombre != profesorBD.Nombre ||
+                profesorInterfaz.Apellidos != profesorBD.Apellidos ||
+                profesorInterfaz.Tlf != profesorBD.Tlf ||
+                profesorInterfaz.Email != profesorBD.Email)
             {
                 cambios = true;
             }

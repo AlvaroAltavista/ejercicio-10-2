@@ -203,7 +203,7 @@
             // 
             // btnAnterior
             // 
-            btnAnterior.Location = new Point(485, 57);
+            btnAnterior.Location = new Point(254, 57);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.Size = new Size(210, 52);
             btnAnterior.TabIndex = 0;
@@ -213,7 +213,7 @@
             // 
             // btnSiguiente
             // 
-            btnSiguiente.Location = new Point(254, 57);
+            btnSiguiente.Location = new Point(485, 57);
             btnSiguiente.Name = "btnSiguiente";
             btnSiguiente.Size = new Size(210, 52);
             btnSiguiente.TabIndex = 0;
@@ -283,6 +283,7 @@
             btnActualizarRegistro.TabIndex = 0;
             btnActualizarRegistro.Text = "Actualizar";
             btnActualizarRegistro.UseVisualStyleBackColor = true;
+            btnActualizarRegistro.Click += btnActualizarRegistro_Click;
             // 
             // btnGuardarRegistro
             // 
