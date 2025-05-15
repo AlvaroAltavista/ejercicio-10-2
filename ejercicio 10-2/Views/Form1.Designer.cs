@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProfesores));
             grpDatos = new GroupBox();
+            lblDniExiste = new Label();
             imgEmailOk = new PictureBox();
             imgEmailNo = new PictureBox();
             imgTelefonoOk = new PictureBox();
@@ -63,7 +64,8 @@
             btnActualizarRegistro = new Button();
             btnGuardarRegistro = new Button();
             btnAnyadirRegistro = new Button();
-            lblDniExiste = new Label();
+            grpOtrasFuncionalidades = new GroupBox();
+            btnMostrarRegistros = new Button();
             grpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgEmailOk).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgEmailNo).BeginInit();
@@ -78,6 +80,7 @@
             grpNavegacion.SuspendLayout();
             grpNuevoRegistro.SuspendLayout();
             grpGestionarRegistros.SuspendLayout();
+            grpOtrasFuncionalidades.SuspendLayout();
             SuspendLayout();
             // 
             // grpDatos
@@ -109,6 +112,16 @@
             grpDatos.TabIndex = 0;
             grpDatos.TabStop = false;
             grpDatos.Text = "Datos";
+            // 
+            // lblDniExiste
+            // 
+            lblDniExiste.AutoSize = true;
+            lblDniExiste.Font = new Font("Poppins ExtraLight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDniExiste.Location = new Point(116, 101);
+            lblDniExiste.Name = "lblDniExiste";
+            lblDniExiste.Size = new Size(141, 31);
+            lblDniExiste.TabIndex = 7;
+            lblDniExiste.Text = "El DNI ya existe";
             // 
             // imgEmailOk
             // 
@@ -216,6 +229,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(296, 34);
             txtEmail.TabIndex = 5;
+            txtEmail.TextAlign = HorizontalAlignment.Right;
             txtEmail.TextChanged += txtDni_TextChanged;
             // 
             // txtTelefono
@@ -224,6 +238,7 @@
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(296, 34);
             txtTelefono.TabIndex = 4;
+            txtTelefono.TextAlign = HorizontalAlignment.Right;
             txtTelefono.TextChanged += txtDni_TextChanged;
             // 
             // lblEmail
@@ -252,6 +267,7 @@
             txtApellidos.Name = "txtApellidos";
             txtApellidos.Size = new Size(296, 34);
             txtApellidos.TabIndex = 3;
+            txtApellidos.TextAlign = HorizontalAlignment.Right;
             txtApellidos.TextChanged += txtDni_TextChanged;
             // 
             // lblApellidos
@@ -270,6 +286,7 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(296, 34);
             txtNombre.TabIndex = 2;
+            txtNombre.TextAlign = HorizontalAlignment.Right;
             txtNombre.TextChanged += txtDni_TextChanged;
             // 
             // lblNombre
@@ -288,6 +305,7 @@
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(296, 34);
             txtDni.TabIndex = 1;
+            txtDni.TextAlign = HorizontalAlignment.Right;
             txtDni.TextChanged += txtDni_TextChanged;
             // 
             // lblDni
@@ -438,21 +456,32 @@
             btnAnyadirRegistro.UseVisualStyleBackColor = true;
             btnAnyadirRegistro.Click += btnAnyadirRegistro_Click;
             // 
-            // lblDniExiste
+            // grpOtrasFuncionalidades
             // 
-            lblDniExiste.AutoSize = true;
-            lblDniExiste.Font = new Font("Poppins ExtraLight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDniExiste.Location = new Point(116, 101);
-            lblDniExiste.Name = "lblDniExiste";
-            lblDniExiste.Size = new Size(141, 31);
-            lblDniExiste.TabIndex = 7;
-            lblDniExiste.Text = "El DNI ya existe";
+            grpOtrasFuncionalidades.Controls.Add(btnMostrarRegistros);
+            grpOtrasFuncionalidades.Location = new Point(46, 831);
+            grpOtrasFuncionalidades.Name = "grpOtrasFuncionalidades";
+            grpOtrasFuncionalidades.Size = new Size(953, 142);
+            grpOtrasFuncionalidades.TabIndex = 4;
+            grpOtrasFuncionalidades.TabStop = false;
+            grpOtrasFuncionalidades.Text = "Otras funcionalidades";
+            // 
+            // btnMostrarRegistros
+            // 
+            btnMostrarRegistros.Location = new Point(22, 56);
+            btnMostrarRegistros.Name = "btnMostrarRegistros";
+            btnMostrarRegistros.Size = new Size(210, 52);
+            btnMostrarRegistros.TabIndex = 0;
+            btnMostrarRegistros.Text = "Mostrar Todos";
+            btnMostrarRegistros.UseVisualStyleBackColor = true;
+            btnMostrarRegistros.Click += btnMostrarRegistros_Click;
             // 
             // FormProfesores
             // 
             AutoScaleDimensions = new SizeF(11F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 842);
+            ClientSize = new Size(1050, 1012);
+            Controls.Add(grpOtrasFuncionalidades);
             Controls.Add(grpNuevoRegistro);
             Controls.Add(grpNavegacion);
             Controls.Add(lblPosicion);
@@ -477,6 +506,7 @@
             grpNavegacion.ResumeLayout(false);
             grpNuevoRegistro.ResumeLayout(false);
             grpGestionarRegistros.ResumeLayout(false);
+            grpOtrasFuncionalidades.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -518,5 +548,7 @@
         private PictureBox imgNombreNo;
         private PictureBox imgDniNo;
         private Label lblDniExiste;
+        private GroupBox grpOtrasFuncionalidades;
+        private Button btnMostrarRegistros;
     }
 }

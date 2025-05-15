@@ -1,4 +1,6 @@
 using ejercicio_10_2.Models;
+using ejercicio_10_2.Views;
+using System.Data;
 using System.Text.RegularExpressions;
 
 namespace ejercicio_10_2
@@ -32,7 +34,6 @@ namespace ejercicio_10_2
         // Método que controla la vista de la interfaz en función del número de registros de la BD
         private void ControlInterfaz()
         {
-            // Controlar si la BD no contiene ningún registro. En caso de que no esté vacia, inicializar en posicion 0
             if (_sqlDBHelper.NumeroProfesores > 0)
             {
                 _posicion = 0;
@@ -279,6 +280,15 @@ namespace ejercicio_10_2
             btnActualizarRegistro.Enabled = false;
         }
 
+        // OTRAS FUNCIONALIDADES -----------------------------------------------------------------------------------
+        // Mostrar todos los registros
+        private void btnMostrarRegistros_Click(object sender, EventArgs e)
+        {
+            FormMostrarRegistros formMostrarRegistros = new FormMostrarRegistros(_sqlDBHelper.DataSetProfesores);
+
+            formMostrarRegistros.ShowDialog();
+        }
+
         // VALIDACIONES ----------------------------------------------------------------------------------------------------------
         // Método que desactiva los indicadores de validación
         private void DesactivarIndicadoresValidacion()
@@ -311,10 +321,9 @@ namespace ejercicio_10_2
 
             if (Regex.IsMatch(dni, patron)) // Se coloca en anidación para evitar que se ejecute la comprobación sin un dni válido.
             {
-                // Comprobamos si el DNI cambia
-                if (txtDni.Text != _sqlDBHelper.DevolverProfesor(_posicion).Dni) // Es distinto
+                if (_posicion == -1) // Modo agregar
                 {
-                    // Comprobamos que no está en ningún registro de la BD
+                    // Solo comprobar si el DNI ya existe en la BD
                     if (_sqlDBHelper.ComprobarDNI(dni))
                     {
                         lblDniExiste.Visible = true;
@@ -323,18 +332,32 @@ namespace ejercicio_10_2
                     else
                     {
                         valido = true;
-
-                        // Control de indicadores
                         imgDniNo.Visible = false;
                         imgDniOk.Visible = true;
                     }
                 }
-                else // Es igual
+                else // Modo edición
                 {
-                    valido = true;
-                    // Control de indicadores
-                    imgDniNo.Visible = false;
-                    imgDniOk.Visible = true;
+                    if (txtDni.Text != _sqlDBHelper.DevolverProfesor(_posicion).Dni)
+                    {
+                        if (_sqlDBHelper.ComprobarDNI(dni))
+                        {
+                            lblDniExiste.Visible = true;
+                            valido = false;
+                        }
+                        else
+                        {
+                            valido = true;
+                            imgDniNo.Visible = false;
+                            imgDniOk.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        valido = true;
+                        imgDniNo.Visible = false;
+                        imgDniOk.Visible = true;
+                    }
                 }
             }
 
@@ -359,7 +382,7 @@ namespace ejercicio_10_2
                 imgTelefonoNo.Visible = false;
                 imgTelefonoOk.Visible = true;
             }
-            
+
             return valido;
         }
 
@@ -436,7 +459,7 @@ namespace ejercicio_10_2
             bool validacionTelefono = ValidarTelefono(txtTelefono.Text);
             bool validacionEmail = ValidarEmail(txtEmail.Text);
 
-            bool validacionCompleta = validacionDni && validacionNombre && validacionApellidos && validacionTelefono && validacionEmail ;
+            bool validacionCompleta = validacionDni && validacionNombre && validacionApellidos && validacionTelefono && validacionEmail;
 
             return validacionCompleta;
         }

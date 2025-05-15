@@ -23,6 +23,11 @@ namespace ejercicio_10_2.Models
             get => _numeroProfesores;
         }
 
+        public DataSet DataSetProfesores
+        {
+            get => _dataSetProfesores;
+        }
+
         // CONSTRUCTOR ---------------------------------------------
         public SqlDBHelper()
         {
